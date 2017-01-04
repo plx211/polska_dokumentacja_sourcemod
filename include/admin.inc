@@ -36,71 +36,71 @@
 #define _admin_included
 
 /**
- * Access levels (flags) for admins.
+ * Flagi dostępu dla admina.
  */
 enum AdminFlag
 {
-	Admin_Reservation = 0,	/**< Reserved slot */
-	Admin_Generic,			/**< Generic admin abilities */
-	Admin_Kick,				/**< Kick another user */
-	Admin_Ban,				/**< Ban another user */
-	Admin_Unban,			/**< Unban another user */
-	Admin_Slay,				/**< Slay/kill/damage another user */
-	Admin_Changemap,		/**< Change the map */
-	Admin_Convars,			/**< Change basic convars */
-	Admin_Config,			/**< Change configuration */
-	Admin_Chat,				/**< Special chat privileges */
-	Admin_Vote,				/**< Special vote privileges */
-	Admin_Password,			/**< Set a server password */
-	Admin_RCON,				/**< Use RCON */
-	Admin_Cheats,			/**< Change sv_cheats and use its commands */
-	Admin_Root,				/**< All access by default */
-	Admin_Custom1,			/**< First custom flag type */
-	Admin_Custom2,			/**< Second custom flag type */
-	Admin_Custom3,			/**< Third custom flag type */
-	Admin_Custom4,			/**< Fourth custom flag type */
-	Admin_Custom5,			/**< Fifth custom flag type */
-	Admin_Custom6,			/**< Sixth custom flag type */
+	Admin_Reservation = 0,	/**< Rezerwacja slota */
+	Admin_Generic,			/**< Prawa standardowego admina */
+	Admin_Kick,				/**< Daj graczowi kicka */
+	Admin_Ban,				/**< Zbanuj gracza */
+	Admin_Unban,			/**< Odbanuj gracza */
+	Admin_Slay,				/**< Zgladz/zabij/zadaj obrazenia innemu graczowi */
+	Admin_Changemap,		/**< Zmien mape */
+	Admin_Convars,			/**< Zmiana podstawowych convarow */
+	Admin_Config,			/**< Zmiana konfiguracji */
+	Admin_Chat,				/**< Specjalne przywileje przy pisaniu na czacie */
+	Admin_Vote,				/**< Specjalne przywileje przy glosowaniu */
+	Admin_Password,			/**< Ustawianie hasla serwera */
+	Admin_RCON,				/**< Uzywanie RCON */
+	Admin_Cheats,			/**< Zmiana komendy sv_cheats i uzywanie jej komend */
+	Admin_Root,				/**< Domyslnie dostep do wszystkiego */
+	Admin_Custom1,			/**< Pierwsza flaga specjalna */
+	Admin_Custom2,			/**< Druga flaga specjalna */
+	Admin_Custom3,			/**< Trzecia flaga specjalna */
+	Admin_Custom4,			/**< Czwarta flaga specjalna */
+	Admin_Custom5,			/**< Piata flaga specjalna */
+	Admin_Custom6,			/**< Szosta flaga specjalna */
 	/* --- */
 };
 
-#define AdminFlags_TOTAL	21		/**< Total number of admin flags */
+#define AdminFlags_TOTAL	21		/**< Ogolna ilosc flag admina */
 
 /**
- * @section Bitwise values definitions for admin flags.
+ * @section Wartosci bitowe dla flag admina.
  */
-#define ADMFLAG_RESERVATION			(1<<0)		/**< Convenience macro for Admin_Reservation as a FlagBit */
-#define ADMFLAG_GENERIC				(1<<1)		/**< Convenience macro for Admin_Generic as a FlagBit */
-#define ADMFLAG_KICK				(1<<2)		/**< Convenience macro for Admin_Kick as a FlagBit */
-#define ADMFLAG_BAN					(1<<3)		/**< Convenience macro for Admin_Ban as a FlagBit */
-#define ADMFLAG_UNBAN				(1<<4)		/**< Convenience macro for Admin_Unban as a FlagBit */
-#define ADMFLAG_SLAY				(1<<5)		/**< Convenience macro for Admin_Slay as a FlagBit */
-#define ADMFLAG_CHANGEMAP			(1<<6)		/**< Convenience macro for Admin_Changemap as a FlagBit */
-#define ADMFLAG_CONVARS				(1<<7)		/**< Convenience macro for Admin_Convars as a FlagBit */
-#define ADMFLAG_CONFIG				(1<<8)		/**< Convenience macro for Admin_Config as a FlagBit */
-#define ADMFLAG_CHAT				(1<<9)		/**< Convenience macro for Admin_Chat as a FlagBit */
-#define ADMFLAG_VOTE				(1<<10)		/**< Convenience macro for Admin_Vote as a FlagBit */
-#define ADMFLAG_PASSWORD			(1<<11)		/**< Convenience macro for Admin_Password as a FlagBit */
-#define ADMFLAG_RCON				(1<<12)		/**< Convenience macro for Admin_RCON as a FlagBit */
-#define ADMFLAG_CHEATS				(1<<13)		/**< Convenience macro for Admin_Cheats as a FlagBit */
-#define ADMFLAG_ROOT				(1<<14)		/**< Convenience macro for Admin_Root as a FlagBit */
-#define ADMFLAG_CUSTOM1				(1<<15)		/**< Convenience macro for Admin_Custom1 as a FlagBit */
-#define ADMFLAG_CUSTOM2				(1<<16)		/**< Convenience macro for Admin_Custom2 as a FlagBit */
-#define ADMFLAG_CUSTOM3				(1<<17)		/**< Convenience macro for Admin_Custom3 as a FlagBit */
-#define ADMFLAG_CUSTOM4				(1<<18)		/**< Convenience macro for Admin_Custom4 as a FlagBit */
-#define ADMFLAG_CUSTOM5				(1<<19)		/**< Convenience macro for Admin_Custom5 as a FlagBit */
-#define ADMFLAG_CUSTOM6				(1<<20)		/**< Convenience macro for Admin_Custom6 as a FlagBit */
+#define ADMFLAG_RESERVATION			(1<<0)		/**< Makra dla Admin_Reservation jako flaga bitowa */
+#define ADMFLAG_GENERIC				(1<<1)		/**< Makra dla Admin_Generic jako flaga bitowa */
+#define ADMFLAG_KICK				(1<<2)		/**< Makra dla Admin_Kick jako flaga bitowa */
+#define ADMFLAG_BAN					(1<<3)		/**< Makra dla Admin_Ban jako flaga bitowa */
+#define ADMFLAG_UNBAN				(1<<4)		/**< Makra dla Admin_Unban jako flaga bitowa */
+#define ADMFLAG_SLAY				(1<<5)		/**< Makra dla Admin_Slay jako flaga bitowa */
+#define ADMFLAG_CHANGEMAP			(1<<6)		/**< Makra dla Admin_Changemap jako flaga bitowa */
+#define ADMFLAG_CONVARS				(1<<7)		/**< Makra dla Admin_Convars jako flaga bitowa */
+#define ADMFLAG_CONFIG				(1<<8)		/**< Makra dla Admin_Config jako flaga bitowa */
+#define ADMFLAG_CHAT				(1<<9)		/**< Makra dla Admin_Chat jako flaga bitowa */
+#define ADMFLAG_VOTE				(1<<10)		/**< Makra dla Admin_Vote jako flaga bitowa */
+#define ADMFLAG_PASSWORD			(1<<11)		/**< Makra dla Admin_Password jako flaga bitowa */
+#define ADMFLAG_RCON				(1<<12)		/**< Makra dla Admin_RCON jako flaga bitowa */
+#define ADMFLAG_CHEATS				(1<<13)		/**< Makra dla Admin_Cheats jako flaga bitowa */
+#define ADMFLAG_ROOT				(1<<14)		/**< Makra dla Admin_Root jako flaga bitowa */
+#define ADMFLAG_CUSTOM1				(1<<15)		/**< Makra dla Admin_Custom1 jako flaga bitowa */
+#define ADMFLAG_CUSTOM2				(1<<16)		/**< Makra dla Admin_Custom2 jako flaga bitowa */
+#define ADMFLAG_CUSTOM3				(1<<17)		/**< Makra dla Admin_Custom3 jako flaga bitowa */
+#define ADMFLAG_CUSTOM4				(1<<18)		/**< Makra dla Admin_Custom4 jako flaga bitowa */
+#define ADMFLAG_CUSTOM5				(1<<19)		/**< Makra dla Admin_Custom5 jako flaga bitowa */
+#define ADMFLAG_CUSTOM6				(1<<20)		/**< Makra dla Admin_Custom6 jako flaga bitowa */
 
 /**
  * @endsection
  */
 
 /**
- * @section Hardcoded authentication methods 
+ * @section "Sztywne" metody autoryzacji
  */
-#define AUTHMETHOD_STEAM			"steam"		/**< SteamID based authentication */
-#define AUTHMETHOD_IP				"ip"		/**< IP based authentication */
-#define AUTHMETHOD_NAME				"name"		/**< Name based authentication */
+#define AUTHMETHOD_STEAM			"steam"		/**< Autoryzacja opatra na steamID */
+#define AUTHMETHOD_IP				"ip"		/**< Autoryzacja opatra na IP */
+#define AUTHMETHOD_NAME				"name"		/**< Autoryzacja opatra na nicku */
 
 /**
  * @endsection
@@ -125,141 +125,141 @@ enum OverrideRule
 };
 
 /**
- * DEPRECATED, do not use.
+ * NIE DZIALA, NIE UZYWAC
  */
 enum ImmunityType
 {
-	Immunity_Default = 1,	/**< Deprecated. */
-	Immunity_Global,		/**< Deprecated. */
+	Immunity_Default = 1,	/**< NIE DZIALA */
+	Immunity_Global,		/**< NIE DZIALA */
 };
 
 /** 
- * Identifies a unique entry in the group permissions cache.  These are not Handles.
+ * Okresla unikalne wejscie w pamieci cache pozwolen grupy.  Nie sa uchwytami.
  */
 enum GroupId
 {
-	INVALID_GROUP_ID = -1,	/**< An invalid/non-existent group */
+	INVALID_GROUP_ID = -1,	/**< Nieporawidlowa/nieistniejaca grupa */
 };
 
 /** 
- * Identifies a unique entry in the admin permissions cache.  These are not Handles.
+ * Okresla unikalne wejscie w pamieci cache pozwolen adminow.  Nie sa uchwytami.
  */
 enum AdminId
 {
-	INVALID_ADMIN_ID = -1,	/**< An invalid/non-existent admin */
+	INVALID_ADMIN_ID = -1,	/**< Niepoprawny/nieistniejacy admin */
 };
 
 /**
- * Methods of computing access permissions.
+ * Metody obliczania pozwolenia na dostep.
  */
 enum AdmAccessMode
 {
-	Access_Real,		/**< Access the user has inherently */
-	Access_Effective,	/**< Access the user has from their groups */
+	Access_Real,		/**< Standardowy dostep dla gracza */
+	Access_Effective,	/**< Dostep ktory gracz uzyskuje od swoich grup */
 };
 
 /**
- * Represents the various cache regions.
+ * Reprezentuje zmienne obszary pamieci.
  */
 enum AdminCachePart
 {
 	AdminCache_Overrides = 0,		/**< Global overrides */
-	AdminCache_Groups = 1,			/**< All groups (automatically invalidates admins too) */
-	AdminCache_Admins = 2,			/**< All admins */
+	AdminCache_Groups = 1,			/**< Wszystkie grupy (automatically uniewaznia adminow) */
+	AdminCache_Admins = 2,			/**< Wszyscy admini */
 };
 
 methodmap AdminId {
-	// Retrieves an admin's user name as made with CreateAdmin().
+	//Pobiera nazwe admina tak jak jest to robione w CreateAdmin().
 	//
-	// @note This function can return UTF-8 strings, and will safely chop UTF-8 strings.
+	// @note Funkcja moze zwracac ciag UTF-8, and will safely chop UTF-8 strings.
 	//
-	// @param name          String buffer to store name.
-	// @param maxlength     Maximum size of string buffer.
-	// @return              Number of bytes written.
+	// @param name          Buffer do zapisania imienia.
+	// @param maxlength     Maksymalnyy rozmiar buffera.
+	// @return              Ilosc zapisanych bitow.
 	public native void GetUsername(char[] name, int maxlength);
 
-	// Binds an admin to an identity for fast lookup later on.  The bind must be unique.
+	// Przypisuje admina do identyfikatora w celu szybkiego wyszukiwania w przyszlosci. Powiazanie musi byc unikalne.
 	//
-	// @param authMethod    Auth method to use, predefined or from RegisterAuthIdentType().
-	// @param ident         String containing the arbitrary, unique identity.
-	// @return              True on success, false if the auth method was not found,
-	//                      ident was already taken, or ident invalid for auth method.
+	// @param authMethod    Metoda uzycia, wczesniej zdefiniowana lub pobrana z RegisterAuthIdentType().
+	// @param ident         String zawierajaca dowolne, unikalne ID.
+	// @return              True jesli prawda, false jesli metoda autoryzacji nie zostala znaleziona,
+	//                      ID jest juz w uzyciu, lub ID niepoprawne dla metody autoryzacji.
 	public native bool BindIdentity(const char[] authMethod, const char[] ident);
 
-	// Sets whether or not a flag is enabled on an admin.
+	// Ustawia lub zabiera flage adminowi.
 	//
-	// @param flag          Admin flag to use.
-	// @param enabled       True to enable, false to disable.
+	// @param flag          flaga.
+	// @param enabled       True - odblokowac, False - odblokowac.
 	public native void SetFlag(AdminFlag flag, bool enabled);
 
-	// Returns whether or not a flag is enabled on an admin.
+	// Sprawdza czy admin ma dana flage.
 	//
-	// @param flag          Admin flag to use.
-	// @param mode          Access mode to check.
-	// @return              True if enabled, false otherwise.
+	// @param flag          flaga.
+	// @param mode          Tryb dostepu do sprawdzenia.
+	// @return              True - posiada flage, False - nie posiada flagi.
 	public native bool HasFlag(AdminFlag flag, AdmAccessMode mode=Access_Effective);
 
-	// Returns the bitstring of access flags on an admin.
+	// Zwraca bitowy ciag znakow zawierajacy flagi danego admina.
 	//
-	// @param mode          Access mode to use.
-	// @return              A bitstring containing which flags are enabled.
+	// @param mode          Tryb dostepu do sprawdzenia.
+	// @return              Ciag znakow zawierajacy posiadane flagi.
 	public native int GetFlags(AdmAccessMode mode);
 
-	// Adds a group to an admin's inherited group list.  Any flags the group has
-	// will be added to the admin's effective flags.
+	//Dodaje grupe do odziedziczonej listy grup admina. Wszystkie flagi grupy
+	// beda dodane do dzialajacych flag admina.
 	//
-	// @param gid           GroupId index of the group.
-	// @return              True on success, false on invalid input or duplicate membership.
+	// @param gid           index GroupId grupy.
+	// @return              True - prawda, False - niepoprawny input lub zduplikowane czlonkostwo.
 	public native bool InheritGroup(GroupId gid);
 
-	// Returns group information from an admin.
+	// Zwraca informacje o grupie od admina.
 	//
-	// @param index         Group number to retrieve, from 0 to N-1, where N
-	//                      is the value of the GroupCount property.
-	// @param name          Buffer to store the group's name.
-	//                      Note: This will safely chop UTF-8 strings.
-	// @param maxlength     Maximum size of the output name buffer.
-	// @return              A GroupId index and a name pointer, or
-	//                      INVALID_GROUP_ID and NULL if an error occurred.
+	// @param index         Numer grupy do pobrania od 0 to n-1, gdzie n
+	//                      oznacza wartosc GroupCount.
+	// @param name          Buffer do umieszczenia nazwy grupy.
+	//                      Note: Operacja bezpiecznie podzieli lancuchy UTF-8.
+	// @param maxlength     Maksymalny rozmiar buffera.
+	// @return              Index GroupId index i wskaznik imienia, lub
+	//                      INVALID_GROUP_ID i NULL w przypadku bledu.
 	public native GroupId GetGroup(int index, const char[] name, int maxlength);
 
-	// Sets a password on an admin.
+	// Ustawia haslo admina.
 	//
-	// @param password      String containing the password.
+	// @param password      String zawierajacy haslo.
 	public native void SetPassword(const char[] password);
 
-	// Gets an admin's password.
+	// Pobiera haslo admina.
 	//
-	// @param buffer        Optional buffer to store the admin's password.
-	// @param maxlength     Maximum size of the output name buffer.
-	//                      Note: This will safely chop UTF-8 strings.
-	// @return              True if there was a password set, false otherwise.
+	// @param buffer        Opcjonalny buffer do umieszczenia hasla.
+	// @param maxlength     Maksymalny rozmiar buffera.
+	//                      Note: Operacja bezpiecznie podzieli lancuchy UTF-8.
+	// @return              True jesli haslo istnieje, False - nie istnieje.
 	public native bool GetPassword(char[] buffer="", int maxlength=0);
 
-	// Tests whether one admin can target another.
+	// Sprawdza czy admin moze obrac za cel innego admina (ban etc).
 	//
-	// The heuristics for this check are as follows:
-	// 0. If the targeting AdminId is INVALID_ADMIN_ID, targeting fails.
-	// 1. If the targeted AdminId is INVALID_ADMIN_ID, targeting succeeds.
-	// 2. If the targeted AdminId is the same as the targeting AdminId,
-	//    (self) targeting succeeds.
-	// 3. If the targeting admin is root, targeting succeeds.
-	// 4. If the targeted admin has access higher (as interpreted by
-	//    (sm_immunity_mode) than the targeting admin, then targeting fails.
-	// 5. If the targeted admin has specific immunity from the
-	//    targeting admin via group immunities, targeting fails.
-	// 6. Targeting succeeds.
+	// Prawa rzadzace ta komenda:
+	// 0. Jesli AdminId targetujacego to INVALID_ADMIN_ID, targetowanie nie przechodzi.
+	// 1. Jesli AdminId targetowanego to INVALID_ADMIN_ID, targetowanie przechodzi.
+	// 2. Jesli admin targetuje samego siebie,
+	//    targetowanie przechodzi.
+	// 3. Jesli targetujacy admin ma roota, targetowanie przechodzi.
+	// 4. Jesli tergetowany admin ma wyzszy immunitet (okreslany komenda
+	//    sm_immunity_mode) niz admin targetujacy, then targetowanie nie przechodzi.
+	// 5. Jesli targetowany admin ma specjalny immunitet od targetujacego admina
+	// przez grupe immunitetow, targetowanie nie przechodzi.
+	// 6. Targetowanie przechodzi.
 	//
-	// @param target        Target admin (may be INVALID_ADMIN_ID).
-	// @return              True if targetable, false if immune.
+	// @param target        Targetuj admina (moze byc INVALID_ADMIN_ID).
+	// @return              True jesli mozna targetowac, false jesli nie mozna.
 	public native bool CanTarget(AdminId other);
 
-	// The number of groups of which this admin is a member.
+	// Ilosc w grup w ktorych admin jest czlonkiem.
 	property int GroupCount {
 		public native get();
 	}
 
-	// Immunity level used for targetting.
+	// Poziom immunitetu uzyty do targetowania.
 	property int ImmunityLevel {
 		public native get();
 		public native set(int level);
@@ -267,10 +267,10 @@ methodmap AdminId {
 }
 
 methodmap GroupId {
-	// Gets whether or not a flag is enabled on a group's flag set.
+	// Sprawdza czy flaga jest dostepna w zbiorze flag grupy.
 	//
-	// @param flag			Admin flag to retrieve.
-	// @return				True if enabled, false otherwise,
+	// @param flag			flaga.
+	// @return				True - jest dostepna, false - nie jest,
 	public native bool HasFlag(AdminFlag flag);
 
 	// Adds or removes a flag from a group's flag set.
