@@ -270,29 +270,29 @@ methodmap GroupId {
 	// Sprawdza czy flaga jest dostepna w zbiorze flag grupy.
 	//
 	// @param flag			flaga.
-	// @return				True - jest dostepna, false - nie jest,
+	// @return				True - jest dostepna, false - nie jest.
 	public native bool HasFlag(AdminFlag flag);
 
-	// Adds or removes a flag from a group's flag set.
+	// Dodaje lub usuba flage ze zbioru flag grupy.
 	//
-	// @param flag			Admin flag to toggle.
-	// @param enabled		True to set the flag, false to unset/disable.
+	// @param flag			Flaga, ktora chcemy zmodyfikowac.
+	// @param enabled		True - ustawienie flagi, False - usuniecie/zablokowanie flagi.
 	public native void SetFlag(AdminFlag flag, bool enabled);
 
-	// Returns the flag set that is added to users from this group.
+	// Zwraca flagi, ktore czlonkowie tej grupy posiadaja.
 	//
-	// @return				Bitstring containing the flags enabled.
+	// @return				Bitowy ciag znakow, zawierajacy posiadane flagi.
 	public native int GetFlags();
 
-	// Returns a group that this group is immune to given an index.
+	// Zwraca grupe, na ktora Twoja grupa jest odporna (czyt. jestescie wyzej w hierarchii) (na podstawie indexu).
 	//
-	// @param number		Index from 0 to N-1, from GroupImmunitiesCount.
-	// @return				GroupId that this group is immune to, or INVALID_GROUP_ID on failure.
+	// @param number		Index od 0 do N-1, na podstawie GroupImmunitiesCount.
+	// @return				GroupId grupy, na ktora Twoja grupa jest odporna, lub INVALID_GROUP_ID w razie porazki.
 	public native GroupId GetGroupImmunity(int index);
 
-	// Adds immunity to a specific group.
+	// Dodaje immunitet okreslonej grupie.
 	//
-	// @param other			Group id to receive immunity to.
+	// @param other			Group id, ktora ma uzyskac immunitet.
 	public native void AddGroupImmunity(GroupId other);
 
 	// Retrieves a group-specific command override.
@@ -310,12 +310,12 @@ methodmap GroupId {
 	// @param rule			Override allow/deny setting.
 	public native void AddCommandOverride(const char[] name, OverrideType type, OverrideRule rule);
 
-	// Number of specific group immunities
+	// Ilosc grup z okreslonym immunitetem
 	property int GroupImmunitiesCount {
 		public native get();
 	}
 
-	// Immunity level used for targetting.
+	// Poziom immunitetu uzyty do targetowania (?).
 	property int ImmunityLevel {
 		public native get();
 		public native set(int level);
@@ -323,9 +323,9 @@ methodmap GroupId {
 }
 
 /**
- * Called when part of the cache needs to be rebuilt.
+ * Wywolywany, kiedy czesc pamieci podrecznej musi zostac przebudowana.
  *
- * @param part			Part of the admin cache to rebuild.
+ * @param part			Czesc pamieci podrecznej admina do przebudowania.
  */
 forward void OnRebuildAdminCache(AdminCachePart part);
 
@@ -366,28 +366,28 @@ native bool GetCommandOverride(const char[] cmd, OverrideType type, int &flags);
 native void UnsetCommandOverride(const char[] cmd, OverrideType type);
 
 /**
- * Adds a new group.  Name must be unique.
+ * Tworzy nowa grupe.  Nazwa musi byc unikatowa.
  *
- * @param group_name	String containing the group name.
- * @return				A new group id, INVALID_GROUP_ID if it already exists.
+ * @param group_name	String zawietajacy nazwe grupy.
+ * @return				id nowej grupy, INVALID_GROUP_ID jesli dana grupa juz istnieje.
  */
 native GroupId CreateAdmGroup(const char[] group_name);
 
 /**
- * Finds a group by name.
+ * Znajduje grupe po imieniu.
  *
- * @param group_name	String containing the group name.
- * @return				A group id, or INVALID_GROUP_ID if not found.
+ * @param group_name	String zawierajacy nazwe grupy.
+ * @return				id grupy, lub INVALID_GROUP_ID jesli nie znaleziono.
  */
 native GroupId FindAdmGroup(const char[] group_name);
 
 /**
- * Adds or removes a flag from a group's flag set.
+ * Dodaje lub usuwa flage ze zbioru flag grupy.
  * @note These are called "add flags" because they add to a user's flags.
  *
  * @param id			Group id.
- * @param flag			Admin flag to toggle.
- * @param enabled		True to set the flag, false to unset/disable.
+ * @param flag			Flaga admina to zmiany.
+ * @param enabled		True - ustawienie flagi, false usuniecie/zablokowanie jej.
  */
 native void SetAdmGroupAddFlag(GroupId id, AdminFlag flag, bool enabled);
 
@@ -402,48 +402,48 @@ native void SetAdmGroupAddFlag(GroupId id, AdminFlag flag, bool enabled);
 native bool GetAdmGroupAddFlag(GroupId id, AdminFlag flag);
 
 /**
- * Returns the flag set that is added to a user from their group.
+ * Zwraca zbior flag dany uzytkownikowi z jego grup.
  * @note These are called "add flags" because they add to a user's flags.
  *
  * @param id			GroupId of the group.
- * @return				Bitstring containing the flags enabled.
+ * @return				Bitowy ciag znakow zawierajacy aktywne flagi.
  */
 native int GetAdmGroupAddFlags(GroupId id);
 
 /**
- * @deprecated			Functionality removed.
+ * @deprecated			Funkcjonalnosc usunieta.
  */
 #pragma deprecated Use SetAdmGroupImmunityLevel() instead.
 native void SetAdmGroupImmunity(GroupId id, ImmunityType type, bool enabled);
 
 /**
- * @deprecated			Functionality removed.
+ * @deprecated			Funkcjonalnosc usunieta.
  */
 #pragma deprecated Use GetAdmGroupImmunityLevel() instead.
 native bool GetAdmGroupImmunity(GroupId id, ImmunityType type);
 
 /**
- * Adds immunity to a specific group.
+ * Daje immunitet konkretnej grupie.
  *
  * @param id			Group id.
- * @param other_id		Group id to receive immunity to.
+ * @param other_id		Group id od ktorej otrzymano immunitet.
  */
 native void SetAdmGroupImmuneFrom(GroupId id, GroupId other_id);
 
 /**
- * Returns the number of specific group immunities.
+ * Zwraca ilosc konkretnych immunitetow grup.
  *
  * @param id			Group id.
- * @return				Number of group immunities.
+ * @return				Ilosc immunitetow grup.
  */
 native int GetAdmGroupImmuneCount(GroupId id);
 
 /**
- * Returns a group that this group is immune to given an index.
+ * Zwraca grupe, na ktora Twoja grupa jest odporna (czyt. jestescie wyzej w hierarchii) (na podstawie indexu).
  *
  * @param id			Group id.
- * @param number		Index from 0 to N-1, from GetAdmGroupImmuneCount().
- * @return				GroupId that this group is immune to, or INVALID_GROUP_ID on failure.
+ * @param number		Index od 0 do N-1, na podstawie GetAdmGroupImmuneCount().
+ * @return				GroupId na ktora Twoja grupa jest odporna, lub INVALID_GROUP_ID w razie niepowodzenia.
  */
 native GroupId GetAdmGroupImmuneFrom(GroupId id, int number); 
 
@@ -485,14 +485,14 @@ native void RegisterAuthIdentType(const char[] name);
 native AdminId CreateAdmin(const char[] name="");
 
 /**
- * Retrieves an admin's user name as made with CreateAdmin().
+ * Zwraca nazwe admina, stworzona za pomoca CreateAdmin().
  *
  * @note This function can return UTF-8 strings, and will safely chop UTF-8 strings.
  *
- * @param id			AdminId of the admin.
- * @param name			String buffer to store name.
- * @param maxlength		Maximum size of string buffer.
- * @return				Number of bytes written.
+ * @param id			AdminId admina.
+ * @param name			Buffer do umieszczenia imienia.
+ * @param maxlength		Maksymalny rozmiar buffera.
+ * @return				Ilosc zapisanych bajtow.
  */
 native int GetAdminUsername(AdminId id, char[] name, int maxlength);
 
@@ -508,30 +508,30 @@ native int GetAdminUsername(AdminId id, char[] name, int maxlength);
 native bool BindAdminIdentity(AdminId id, const char[] auth, const char[] ident);
 
 /**
- * Sets whether or not a flag is enabled on an admin.
+ * Ustawia flage admina (niezaleznie, czy ja ma czy nie).
  *
- * @param id			AdminId index of the admin.
- * @param flag			Admin flag to use.
- * @param enabled		True to enable, false to disable.
+ * @param id			AdminId admina.
+ * @param flag			Flaga do modyfikacji.
+ * @param enabled		True - ustawienie flagi, false - usuniecie/zablokowanie jej.
  */
 native void SetAdminFlag(AdminId id, AdminFlag flag, bool enabled);
 
 /**
- * Returns whether or not a flag is enabled on an admin.
+ * Sprawdza, czy dana flaga admina jest aktywna.
  *
- * @param id			AdminId index of the admin.
- * @param flag			Admin flag to use.
- * @param mode			Access mode to check.
- * @return				True if enabled, false otherwise.
+ * @param id			AdminId admina.
+ * @param flag			Sprawdzana flaga.
+ * @param mode			Sprawdzany tryb dostepu.
+ * @return				True jesli aktywna, w przeciwnym razie - false.
  */
 native bool GetAdminFlag(AdminId id, AdminFlag flag, AdmAccessMode mode=Access_Effective);
 
 /**
- * Returns the bitstring of access flags on an admin.
+ * Zwraca bitowy ciag znakow aktywnych flag admina.
  *
- * @param id			AdminId index of the admin.
- * @param mode			Access mode to use.
- * @return				A bitstring containing which flags are enabled.
+ * @param id			AdminId admina.
+ * @param mode			Sprawdzany tryb dostepu.
+ * @return				Bitowy ciag znakow aktywnych flag.
  */
 native int GetAdminFlags(AdminId id, AdmAccessMode mode);
 
@@ -546,52 +546,52 @@ native int GetAdminFlags(AdminId id, AdmAccessMode mode);
 native bool AdminInheritGroup(AdminId id, GroupId gid);
 
 /**
- * Returns the number of groups this admin is a member of.
+ * Zwraca ilosc grup, ktorych dany admin jest czlonkiem.
  * 
- * @param id			AdminId index of the admin.
- * @return				Number of groups this admin is a member of.
+ * @param id			AdminId admina.
+ * @return				Ilosc grup, ktorych dany admin jest czlonkiem.
  */
 native int GetAdminGroupCount(AdminId id);
 
 /**
- * Returns group information from an admin.
+ * Zwraca informacje o grupie admina
  *
- * @param id        	AdminId index of the admin.
- * @param index			Group number to retrieve, from 0 to N-1, where N
- *						is the value of GetAdminGroupCount(id).
- * @param name			Buffer to store the group's name.
+ * @param id        	AdminId admina.
+ * @param index			Numer grupy, od 0 do N-1, gdzie N
+ *						jest wartoscia GetAdminGroupCount(id).
+ * @param name			Buffer do umieszczenia nazwy grupy.
  *						Note: This will safely chop UTF-8 strings.
- * @param maxlength		Maximum size of the output name buffer.
- * @return				A GroupId index and a name pointer, or
- *						INVALID_GROUP_ID and NULL if an error occurred.
+ * @param maxlength		Maksymalny rozmiar buffera.
+ * @return				GroupId oraz name pointer, lub
+ *						INVALID_GROUP_ID oraz NULL w razie bledu.
  */
 native GroupId GetAdminGroup(AdminId id, int index, const char[] name, int maxlength);
 
 /**
- * Sets a password on an admin.
+ * Ustawia adminowi haslo.
  *
- * @param id			AdminId index of the admin.
- * @param password		String containing the password.
+ * @param id			AdminId admina.
+ * @param password		Ciag znakow, zawierajacy haslo.
  */
 native void SetAdminPassword(AdminId id, const char[] password);
 
 /**
- * Gets an admin's password.
+ * Zwraca haslo admina.
  *
- * @param id			AdminId index of the admin.
- * @param buffer			Optional buffer to store the admin's password.
- * @param maxlength		Maximum size of the output name buffer.
+ * @param id			AdminId admina.
+ * @param buffer			Opcjonalny buffer do przechowania hasla.
+ * @param maxlength		Maksymalny rozmiar buffera.
  *						Note: This will safely chop UTF-8 strings.
- * @return				True if there was a password set, false otherwise.
+ * @return				True, jest haslo bylo ustawione, w przeciwnym wypadku - false.
  */
 native bool GetAdminPassword(AdminId id, char[] buffer="", int maxlength=0);
 
 /**
- * Attempts to find an admin by an auth method and an identity.
+ * Probuje znalezc admina na podstawie metody autoryzacji oraz identyfikator.
  *
- * @param auth			Auth method to try.
- * @param identity		Identity string to look up.
- * @return				An AdminId index if found, INVALID_ADMIN_ID otherwise.
+ * @param auth			Metoda autoryzacji.
+ * @param identity		Ciag znakow zawierajacy identyfikator.
+ * @return				AdminId jesli znaleziono, w przeciwnym razie INVALID_ADMIN_ID.
  */
 native AdminId FindAdminByIdentity(const char[] auth, const char[] identity);
 
@@ -606,67 +606,67 @@ native AdminId FindAdminByIdentity(const char[] auth, const char[] identity);
 native bool RemoveAdmin(AdminId id);
 
 /**
- * Converts a flag bit string to a bit array.
+ * Konwetruje bitowy ciag znakow do tablicy bitow.
  *
- * @param bits			Bit string containing the flags.
- * @param array			Array to write the flags to.  Enabled flags will be 'true'.
- * @param maxSize		Maximum number of flags the array can store.
- * @return				Number of flags written.
+ * @param bits			Bitowy ciag znakow zawierajacy flagi.
+ * @param array			Tablica do zapisania flag.  Odblokowane flagi beda ustawione na 'true'.
+ * @param maxSize		Maksymalna ilosc flag, jakie tablica moze pomiescic.
+ * @return				Ilosc zapisanych flag.
  */
 native int FlagBitsToBitArray(int bits, bool[] array, int maxSize);
 
 /**
- * Converts a flag array to a bit string.
+ * Konwertuje tablice flag do bitowego ciagu znakow.
  *
- * @param array			Array containing true or false for each AdminFlag.
- * @param maxSize		Maximum size of the flag array.
- * @return				A bit string composed of the array bits.
+ * @param array			Tablica, zawierajaca true/false poszczegolnych flag.
+ * @param maxSize		Maksymalny rozmiar tablicy flag.
+ * @return				Bitowy ciag znakow stworzony na podstawie tablicy.
  */
 native int FlagBitArrayToBits(const bool[] array, int maxSize);
 
 /**
- * Converts an array of flags to bits.
+ * Konwertuje tablice flag do postaci bitowej.
  *
- * @param array			Array containing flags that are enabled.
- * @param numFlags		Number of flags in the array.
- * @return				A bit string composed of the array flags.
+ * @param array			Tablica, zawierajaca flagi, ktore sa aktywne.
+ * @param numFlags		Ilosc flag w tablicy.
+ * @return				Bitowy ciag znakow stworzony na podstawie tablicy flag.
  */
 native int FlagArrayToBits(const AdminFlag[] array, int numFlags);
 
 /**
- * Converts a bit string to an array of flags.
+ * Konwertuje bitowy ciag znakow do tablicy flag.
  *
- * @param bits			Bit string containing the flags.
- * @param array			Output array to write flags.
- * @param maxSize		Maximum size of the flag array.
- * @return				Number of flags written.
+ * @param bits			Bitowy ciag znakow zawierajacy flagi.
+ * @param array			Tablica do zapisania flag.
+ * @param maxSize		Maksymalny rozmiar tablicy.
+ * @return				Ilosc zapisanych flag.
  */
 native int FlagBitsToArray(int bits, AdminFlag[] array, int maxSize);
 
 /**
- * Finds a flag by its string name.
+ * Znajduje flage na podstawie jej imienia.
  *
- * @param name			Flag name (like "kick"), case sensitive.
- * @param flag			Variable to store flag in.
- * @return				True on success, false if not found.
+ * @param name			Nazwa flagi (np. "kick"), rozmiar liter ma znaczenie.
+ * @param flag			Zmienna, w ktorej zostanie umieszczona flaga.
+ * @return				True, jesli sie powiodlo, w przeciwnym razie - false.
  */
 native bool FindFlagByName(const char[] name, AdminFlag &flag);
 
 /**
- * Finds a flag by a given character.
+ * Znajduje flage na podstawie znaku.
  *
- * @param c				Flag ASCII character/token.
- * @param flag			Variable to store flag in.
- * @return				True on success, false if not found.
+ * @param c				Znak/token flagi (ASCII)
+ * @param flag			Zmienna, w ktorej zostanie umieszczona flaga.
+ * @return				True, jesli sie powiodlo, w przeciwnym razie - false.
  */
 native bool FindFlagByChar(int c, AdminFlag &flag);
 
 /**
- * Finds the flag char for a given admin flag.
+ * Znajduje znak flagi (char).
  *
- * @param flag                 Flag to look up.
- * @param c                    Variable to store flag char.
- * @return                     True on success, false if not found.
+ * @param flag                 Flaga.
+ * @param c                    Zmienna, w ktorej zostanie umieszczony znak.
+ * @return                     True, jesli sie powiodlo, w przeciwnym razie - false.
  */
 native bool FindFlagChar(AdminFlag flag, int &c);
 
@@ -680,74 +680,71 @@ native bool FindFlagChar(AdminFlag flag, int &c);
 native int ReadFlagString(const char[] flags, int &numchars=0);
 
 /**
- * Tests whether one admin can target another.
+ * Sprawdza, czy dany admin moze cos zrobic drugiemu (slap, kick etc.).
  *
- * The heuristics for this check are as follows:
- * 0. If the targeting AdminId is INVALID_ADMIN_ID, targeting fails.
- * 1. If the targeted AdminId is INVALID_ADMIN_ID, targeting succeeds.
- * 2. If the targeted AdminId is the same as the targeting AdminId,
- *    (self) targeting succeeds.
- * 3. If the targeting admin is root, targeting succeeds.
- * 4. If the targeted admin has access higher (as interpreted by 
- *    (sm_immunity_mode) than the targeting admin, then targeting fails.
- * 5. If the targeted admin has specific immunity from the
- *    targeting admin via group immunities, targeting fails.
- * 6. Targeting succeeds.
+ * Dla uproszczenia opisu zakladamy, ze X to admin, ktoremu sprawdzamy, czy ma wladze nad drugim adminem (Y).
+ * Obowiazujace zasady:
+ * 0. Jezeli AdminId admina X wynosi INVALID_ADMIN_ID, zwraca false.
+ * 1. Jezeli AdminId admina Y wynosi INVALID_ADMIN_ID, zwraca true.
+ * 2. Jezeli X i Y maja takie same AdminId, zwraca true.
+ * 3. Jezeli X ma roota, zwraca true.
+ * 4. Jezeli Y ma wieksza wartosc sm_immunity_mode niz X, zwraca false.
+ * 5. Jezeli Y ma okreslony immunitet dany mu przez X poprzez immunitety grup, zwraca false
+ * 6. W kazdym innym przypadku zwraca true.
  *
- * @param admin			Admin doing the targetting (may be INVALID_ADMIN_ID).
- * @param target		Target admin (may be INVALID_ADMIN_ID).
- * @return				True if targetable, false if immune.
+ * @param admin			AdminId X (moze byc INVALID_ADMIN_ID).
+ * @param target		AdminId Y (moze byc INVALID_ADMIN_ID).
+ * @return				True, jesli ma wladze. False, jesli jest odporny.
  */
 native bool CanAdminTarget(AdminId admin, AdminId target);
 
 /**
- * Creates an admin auth method.  This does not need to be called more than once
- * per method, ever.
+ * Tworzy metode identyfikacji admina.  Nie musi byc wywolywane wiecej niz jeden raz dla konkretnej metody.
  *
- * @param method		Name of the authentication method.
- * @return				True on success, false on failure.
+ * @param method		Nazwa metody identyfikacji.
+ * @return				True, jesli sie powiodlo, w przeciwnym razie - false.
  */
 native bool CreateAuthMethod(const char[] method);
 
 /**
- * Sets a group's immunity level.
+ * Ustawia poziom immunitetu grupie.
  *
- * @param gid			Group Id.
- * @param level			Immunity level value.
- * @return				Old immunity level value.
+ * @param gid			Id grupy.
+ * @param level			Wartosc immunitetu.
+ * @return				Stara wartosc immunitetu grupy.
  */
 native int SetAdmGroupImmunityLevel(GroupId gid, int level);
 
 /**
- * Gets a group's immunity level (defaults to 0).
+ * Zwraca poziom immunitetu grupy (defaults to 0).
  *
- * @param gid			Group Id.
- * @return				Immunity level value.
+ * @param gid			Id grupy.
+ * @return				Poziom immunitetu grupy.
  */
 native int GetAdmGroupImmunityLevel(GroupId gid);
 
 /**
- * Sets an admin's immunity level.
+ * Ustawia poziom immunitetu admina.
  *
- * @param id			Admin Id.
- * @param level			Immunity level value.
- * @return				Old immunity level value.
+ * @param id			Id admina.
+ * @param level			Poziom immunitetu.
+ * @return				Stary poziom immunitetu admina.
  */
 native int SetAdminImmunityLevel(AdminId id, int level);
 
 /**
- * Gets an admin's immunity level.
+ * Zwraca poziom immunitetu admina.
  *
- * @param id			Admin Id.
- * @return				Immunity level value.
+ * @param id			Id admina.
+ * @return				Poziom immunitetu admina.
  */
 native int GetAdminImmunityLevel(AdminId id);
 
 /**
- * Converts a flag to its single bit.
+ * Konwertuje flage (char) do postaci bitowej.
  * 
- * @param flag			Flag to convert.
- * @return				Bit representation of the flag.
+ * @param flag			Flaga.
+ * @return				Bitowa reprezentacja flagi.
  */
 stock int FlagToBit(AdminFlag flag)
 {
@@ -755,11 +752,11 @@ stock int FlagToBit(AdminFlag flag)
 }
 
 /**
- * Converts a bit to an AdminFlag.
+ * Konwetruje flage (bit) do postaci znaku (AdminFlag).
  *
- * @param bit			Bit to convert.
- * @param flag			Stores the converted flag by reference.
- * @return				True on success, false otherwise.
+ * @param bit			Flaga (bit).
+ * @param flag			Tutaj umieszczona zostanie flaga w postaci znaku.
+ * @return				True, jesli sie powiodlo. W przeciwnym razie - false
  */
 stock bool BitToFlag(int bit, AdminFlag &flag)
 {
